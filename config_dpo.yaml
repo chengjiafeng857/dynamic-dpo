@@ -16,7 +16,7 @@ dpo_training:
   learning_rate: 5e-7
   beta: 0.1
   log_steps: 10
-  warmup_steps: 120
+  warmup_steps: 30
   max_grad_norm: 10
   save_dpo_dir: dpo_model
   save_dir: dynamic_dpo_model
