@@ -8,11 +8,13 @@ dataset:
   val_ratio: 0.1
   seed: 42
   max_len: 512
+  num_works: 0
   
 dpo_training:
   epochs: 1
   batch_size: 16
   learning_rate: 5e-7
+  beta: 0.1
   log_steps: 10
   warmup_steps: 120
   max_grad_norm: 10
@@ -30,7 +32,7 @@ test:
   dpo_out_dir: eval_outputs/dpo_out.jsonl
   dynamic_dpo_out_dir: eval_outputs/dynamic_dpo_out.jsonl
   ref_out_dir: eval_outputs/ref_out.jsonl
-  judge_model: gpt-4.o
+  judge_model: gpt-4o
   summary_output: eval_outputs/summary.json
 
 risk_test:
