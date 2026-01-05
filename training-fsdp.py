@@ -195,7 +195,7 @@ def train():
     # initial wandb (rank0 only)
     if is_rank0:
         wandb.init(
-            project=config.get("wandb_project", "handwritten-dpo"),
+            project=config.get("wandb_project", "dynamic-dpo"),
             name=config.get("run_name", "run"),
             config=config,
         )
