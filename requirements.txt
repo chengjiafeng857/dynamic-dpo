@@ -1,12 +1,9 @@
-transformers
 datasets
-tokenizers
-accelerate 
-peft
-trl
-tqdm
-matplotlib
-scipy
-wandb
 numpy
+openai
+PyYAML
+torch
+tqdm
+transformers
+wandb
 
