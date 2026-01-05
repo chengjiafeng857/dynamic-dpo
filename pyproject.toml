@@ -1,0 +1,19 @@
+[project]
+name = "dynamic-dpo"
+version = "0.0.0"
+description = "Dynamic DPO training utilities"
+requires-python = ">=3.10"
+dependencies = [
+  "datasets",
+  "numpy",
+  "openai",
+  "PyYAML",
+  "torch",
+  "tqdm",
+  "transformers",
+  "wandb",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

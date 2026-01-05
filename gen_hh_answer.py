@@ -1,13 +1,39 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from datasets import load_dataset
-from dataset_process_hh import split_prompt_and_response
+# from dataset_process_hh import split_prompt_and_response
 import os
 import json
 import random
 import yaml
 from tqdm import tqdm
 import argparse
+
+
+ASSISTANT_TAG = "\n\nAssistant:"
+
+# delete the \n at the beginning of the response
+def strip_one_leading_newline(s): 
+    return s[1:] if s.startswith("\n") else s
+
+def split_prompt_and_response(input_text):
+    """
+    HH format: multi-turn text containing many "\n\nAssistant:".
+    We take the LAST Assistant tag as the start of the final assistant response.
+
+    Returns:
+    prompt: everything up to and including the final "\n\nAssistant:"
+    response: the assistant completion after that tag (no leading newline)
+    
+    """
+    input_text = str(input_text).replace("\r\n", "\n").replace("\r", "\n")
+    index = input_text.rfind(ASSISTANT_TAG)
+    if index < 0:
+        raise ValueError("No '\\n\\nAssistant:' tag found in HH input.")
+    prompt = input_text[:index + len(ASSISTANT_TAG)]
+    response = input_text[index + len(ASSISTANT_TAG):]
+    response = strip_one_leading_newline(response)
+    return prompt, response
 
 # load yaml config
 def load_yaml_config(path):
